@@ -1,0 +1,38 @@
+#xjEditorApp {
+    position: relative;
+    width: 322px;
+    margin: 0 auto;
+    background: cornsilk;
+}
+
+.xjMArea {
+    position: relative;
+    height: 40px;
+    background: gray;
+}
+
+.xjMenu {
+    position: relative;
+}
+
+.xjEArea {
+    position: relative;
+    height: 486px;
+    border: 1px solid black;
+}
+
+.xjComp {
+    position: absolute;
+    border: 1px solid grey;
+}
+
+.xjText {
+    width: 100%;
+    border: 1px solid red;
+    height: 24px;
+}
+
+.xjImage {
+    /*width: 32px;*/
+    height: 24px;
+}
