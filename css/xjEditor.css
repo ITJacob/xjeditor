@@ -15,24 +15,164 @@
     position: relative;
 }
 
-.xjEArea {
+.xjEWrapper {
     position: relative;
     height: 486px;
     border: 1px solid black;
 }
 
+.xjEArea>li {
+    color: #676767;
+    line-height: 1;
+    background: 0;
+    position: absolute;
+    list-style: none!important;
+    margin: 0!important;
+    padding: 0;
+    -webkit-transition: padding .5s;
+    -moz-transition: padding .5s;
+    transition: padding .5s;
+    min-height: 24px;
+    min-width: 24px;
+    width: 100%;
+    -webkit-user-select: none
+}
+
 .xjComp {
     position: absolute;
-    border: 1px solid grey;
 }
 
 .xjText {
+    font-size: 24px;
+    color: #404449;
+    line-height: inherit;
+    padding: .3em 15px;
+    margin: 0;
     width: 100%;
-    border: 1px solid red;
-    height: 24px;
+    height: 100%;
+    word-wrap: break-word;
+    text-align: left
 }
 
 .xjImage {
-    /*width: 32px;*/
-    height: 24px;
+    width: 100%;
+    height: 100%;
+}
+
+/*component bar*/
+
+.bar {
+    position: absolute;
+    z-index: 998;
+}
+
+.bar-n {
+    width: 100%;
+    height: 5px;
+    top: 0;
+    cursor: n-resize;
+    background: url(/assets/images/bar-1px.png) repeat-x
+}
+
+.bar-n div {
+    position: absolute;
+    left: 50%;
+    top: -6px;
+    margin-left: -6px
+}
+
+.bar-s {
+    width: 100%;
+    height: 5px;
+    bottom: 0;
+    cursor: s-resize;
+    background: url(/assets/images/bar-1px.png) repeat-x bottom
+}
+
+.bar-s div {
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    margin-left: -6px
+}
+
+.bar-e {
+    width: 5px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    cursor: e-resize;
+    background: url(/assets/images/bar-1px.png) repeat-y right
+}
+
+.bar-e div {
+    position: absolute;
+    top: 50%;
+    right: -6px;
+    margin-top: -6px
+}
+
+.bar-w {
+    width: 5px;
+    height: 100%;
+    top: 0;
+    cursor: w-resize;
+    background: url(/assets/images/bar-1px.png) repeat-y
+}
+
+.bar-w div {
+    position: absolute;
+    top: 50%;
+    left: -6px;
+    margin-top: -6px
+}
+
+.bar-ne {
+    top: -6px;
+    right: -6px;
+    cursor: ne-resize
+}
+
+.bar-nw {
+    top: -6px;
+    left: -6px;
+    cursor: nw-resize
+}
+
+.bar-se {
+    bottom: -6px;
+    right: -6px;
+    cursor: se-resize
+}
+
+.bar-sw {
+    bottom: -6px;
+    left: -6px;
+    cursor: sw-resize
+}
+
+.bar-radius {
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border: 1px solid #08a1ef;
+    border-radius: 12px
+}
+
+.bar-rotate {
+    top: -30px;
+    left: 50%;
+    margin-left: -6px;
+    background-color: #9ad64b;
+    border: none;
+    cursor: url(/assets/images/mouserotate.ico) 10 10,default
+}
+
+.bar-line {
+    width: 2px;
+    height: 18px;
+    top: -18px;
+    left: 50%;
+    margin-left: -1px;
+    background-color: #9ad64b
 }

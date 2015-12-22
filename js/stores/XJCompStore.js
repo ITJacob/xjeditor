@@ -5,10 +5,12 @@
  * XJCompStore
  */
 
-var AppDispatcher = require('../dispatcher/AppDispatcher');
+var _ = require('lodash');
 var EventEmitter = require('events').EventEmitter;
-var XJEditorConstants = require('../constants/XJEditorConstants');
 var assign = require('object-assign');
+
+var AppDispatcher = require('../dispatcher/AppDispatcher');
+var XJEditorConstants = require('../constants/XJEditorConstants');
 
 var CHANGE_EVENT = 'change';
 
@@ -24,14 +26,17 @@ function create(type) {
     // Using the current timestamp + random number in place of a real id.
     var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
     var length = Object.keys(_comps).length;
-    var newposition = {
-        left: 0,
-        top: length*25 //TODO update init position calculation
+    var newstyle = {
+        height: "35px",
+        width: "300px",
+        left: "0px",
+        top: length*25 + "px", //TODO update init position calculation
+        rotateZ: "0",
     };
     _comps[id] = {
         id: id,
         type: type,
-        position: newposition
+        style: newstyle
     };
 }
 
@@ -42,7 +47,7 @@ function create(type) {
  *     updated.
  */
 function update(id, updates) {
-    _comps[id] = assign({}, _comps[id], updates);
+    _.merge(_comps[id], updates);
 }
 
 /**
@@ -95,8 +100,8 @@ AppDispatcher.register(function(action) {
             }
         break;
 
-        case XJEditorConstants.XJ_COMP_ACTION_MOVE:
-            update(action.id, action.position);
+        case XJEditorConstants.XJ_COMP_ACTION_UPDATE:
+            update(action.id, action.style);
             XJCompStore.emitChange();
         break;
 

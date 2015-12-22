@@ -21,13 +21,13 @@ var XJEditActions = {
     },
 
     /**
-     * @param  {object} target position
+     * @param  {object} target style
      */
-    move: function(id, position) {
+    update: function(id, style) {
         AppDispatcher.dispatch({
-            actionType: XJEditorConstants.XJ_COMP_ACTION_MOVE,
+            actionType: XJEditorConstants.XJ_COMP_ACTION_UPDATE,
             id: id,
-            position: position
+            style: style
         });
     },
 
