@@ -121,8 +121,6 @@ XJCompUIHelper.prototype.animateResizeEnd = function(e) {
 XJCompUIHelper.prototype.animateRotate = function(e) {
     e.preventDefault();
     var target = _getPosition(this.node);
-    // console.log("e center: (" + e.center.x + ", " + e.center.y +
-    //             "); target center: (" + target.x + ", " + target.y + ")");
     var yAxis = e.center.x - target.x;
     var xAxis = target.y - e.center.y;
     var angle = Math.atan2(yAxis, xAxis) * 360 / (2 * Math.PI);
@@ -136,20 +134,23 @@ XJCompUIHelper.prototype.animateRotateEnd = function(e) {
     var newStyle = {
         rotateZ: this.nodeStyle.transform.replace ( /[^\d.-]/g, '' ),
     };
-    // console.log("  ...rotateZ: " + newStyle.rotateZ);
 
     XJEditActions.update(this.id, {style: newStyle});
 };
 
-function _getPosition(element) {
-    var xPosition = parseInt(element.style.width)/2;
-    var yPosition = parseInt(element.style.height)/2;
+// ref: http://www.kirupa.com/html5/get_element_position_using_javascript.htm
+function _getPosition(elem) {
+    var xPosition = parseInt(elem.style.width)/2;
+    var yPosition = parseInt(elem.style.height)/2;
 
-    while(element) {
-        xPosition += element.offsetLeft;
-        yPosition += element.offsetTop;
-        element = element.offsetParent;
+    while(elem) {
+        xPosition +=
+            (elem.offsetLeft - elem.scrollLeft + elem.clientLeft);
+        yPosition +=
+            (elem.offsetTop - elem.scrollTop + elem.clientTop);
+        elem = elem.offsetParent;
     }
+
     return { x: xPosition, y: yPosition };
 }
 
