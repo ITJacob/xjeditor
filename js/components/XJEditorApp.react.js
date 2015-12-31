@@ -9,6 +9,7 @@ var React = require('react');
 var XJCompStore = require('../stores/XJCompStore');
 var XJMenuArea = require('../components/XJMenuArea.react');
 var XJEditorArea = require('../components/XJEditorArea.react');
+var XJGrid = require('../components/XJGrid.react');
 
 /**
  * Retrieve the current xjcomponent data from the XJCompStore
@@ -39,8 +40,19 @@ var XJEditorApp = React.createClass({
     render: function() {
         return (
             <div className="xjEditor">
+                <div className="xjBG" />
                 <XJMenuArea />
-                <XJEditorArea allXJComps={this.state.allXJComps} />
+                <div className="xjPhone">
+                    <div className="top" />
+                    <div className="phone_menubar" />
+                    <div className="scene_title_baner" />
+                    <XJEditorArea allXJComps={this.state.allXJComps} />
+                    <XJGrid />
+                    <div className="bottom" />
+                    <div className="tips">
+                        为了获得更好的使用，建议使用谷歌浏览器（chrome）、360浏览器、IE11浏览器。
+                    </div>
+                </div>
             </div>
         );
     },

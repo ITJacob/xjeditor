@@ -22,9 +22,10 @@ var XJEditorArea = React.createClass({
         }
 
         return (
-            <section className="xjEWrapper">
+            <div className="xjEWrapper">
                 <ul className="xjEArea">{comps}</ul>
-            </section>
+            </div>
+
         );
     }
 });

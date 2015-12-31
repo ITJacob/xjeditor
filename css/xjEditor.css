@@ -1,24 +1,98 @@
+body {
+    font: 14px/1.2 "Microsoft YaHei",Tahoma,Helvetica,Arial,"\5b8b\4f53",sans-serif;
+    color: #999;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 1.2;
+}
+
+*,:before,:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
 #xjEditorApp {
+    /*background-color: #d0cfd8 !important;*/
+    height: 100%;
+    /*overflow-y: scroll;*/
+}
+
+.xjEditor {
     position: relative;
-    width: 322px;
-    margin: 0 auto;
-    background: cornsilk;
+}
+
+.xjBG {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #d0cfd8 !important;
 }
 
 .xjMArea {
     position: relative;
     height: 40px;
+    width: 322px;
+    margin: 0 auto;
     background: gray;
 }
 
 .xjMenu {
     position: relative;
+    padding: 8px;
+    float: left;
+    box-sizing: border-box;
+}
+
+.xjPhone {
+    position: relative;
+    top: 20px;
+    width: 322px;
+    margin: 0 auto;
+}
+
+.xjPhone .top {
+    height: 42px;
+    background: url(/assets/images/yulan_phone_top.png) no-repeat;
+    background-size: 100%
+}
+
+.xjPhone .phone_menubar {
+    background: url(/assets/images/phonetitle1.gif);
+    height: 20px;
+}
+
+.scene_title_baner {
+    height: 40px;
+    line-height: 40px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    border-left: 1px solid #F6F6F6;
+    border-right: 1px solid #F6F6F6;
+}
+
+.xjPhone .bottom {
+    height: 47px;
+    background: url(/assets/images/yulan_phone_bottom.png) no-repeat;
+    text-align: center;
+    background-size: 100%;
+}
+
+.xjPhone .tips {
+    margin-top: 5px;
+    text-align: center;
 }
 
 .xjEWrapper {
     position: relative;
     height: 486px;
     border: 1px solid black;
+    background: #fff;
 }
 
 .xjEArea>li {
@@ -36,6 +110,11 @@
     min-width: 24px;
     width: 100%;
     -webkit-user-select: none
+}
+
+.xjEArea>li * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 .xjComp {
@@ -57,6 +136,16 @@
 .xjImage {
     width: 100%;
     height: 100%;
+}
+
+.xjGrid {
+    position: absolute;
+    top: 102px;
+    left: 0;
+    right: 0;
+    height: 486px;
+    border: 1px dashed #ddd;
+    border-top-width: 0
 }
 
 /*component bar*/
