@@ -7,6 +7,7 @@
 
 var _ = require('lodash');
 var XJEditActions = require('../actions/XJEditActions');
+var XJGuideActions = require('../actions/XJGuideActions');
 var XJEditorConstants = require('../constants/XJEditorConstants');
 
 
@@ -30,6 +31,7 @@ XJCompUIHelper.prototype.animateMove = function(e) {
                 e.deltaY + "px, 0) rotateZ(" +
                 this.initNode.rotateZ + "deg)";
     this.nodeStyle.transform = value;
+    XJGuideActions.sync(this.nodeStyle, e);
 };
 
 XJCompUIHelper.prototype.animateMoveEnd = function(e) {
@@ -42,6 +44,7 @@ XJCompUIHelper.prototype.animateMoveEnd = function(e) {
                                 this.initNode.rotateZ + "deg)";
 
     XJEditActions.update(this.id, {style: newPosition});
+    XJGuideActions.stop();
 };
 
 XJCompUIHelper.prototype.animateResize = function(e, type) {

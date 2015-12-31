@@ -31,6 +31,7 @@ function create(type) {
         width: "300px",
         left: "0px",
         top: length*25 + "px", //TODO update init position calculation
+        zIndex: 100 + length,
         rotateZ: "0",
     };
     _comps[id] = {
