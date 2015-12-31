@@ -8,6 +8,11 @@
 var keyMirror = require('keymirror');
 
 module.exports = keyMirror({
+    XJ_GUIDE_ACTION_INIT: null,
+    XJ_GUIDE_ACTION_START: null,
+    XJ_GUIDE_ACTION_SYNC: null,
+    XJ_GUIDE_ACTION_STOP: null,
+
     XJ_COMP_ACTION_CREATE: null,
     XJ_COMP_ACTION_DESTROY: null,
     XJ_COMP_ACTION_UPDATE: null,
