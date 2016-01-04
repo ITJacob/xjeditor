@@ -9,6 +9,7 @@ var _ = require('lodash');
 var React = require('react');
 var Hammer = require('react-hammerjs');
 
+var XJEditActions = require('../actions/XJEditActions');
 var XJEditorConstants = require('../constants/XJEditorConstants');
 var XJCompUIHelper = require('../helpers/XJCompUIHelper');
 var XJCompFactory = require('../helpers/XJCompFactory');
@@ -17,12 +18,15 @@ var XJCompBar = require('../components/XJCompBar.react');
 
 var XJComponent = React.createClass({
 
+    getInitialState: function() {
+        return {
+            isMoving: false
+        };
+    },
+
     componentWillMount: function() {
         this.uihelper = new XJCompUIHelper(this);
-
-        var factory = new XJCompFactory();
-        this.content = factory.create(this.props.comp.type);
-        this.bars = factory.createBars(this);
+        this.factory = new XJCompFactory();
     },
 
     componentDidMount: function() {
@@ -31,30 +35,47 @@ var XJComponent = React.createClass({
 
     componentWillUnmount: function() {
         delete this.uihelper;
-        delete this.content;
-        delete this.bars;
+        delete this.factory;
+        // delete this.content;
+        // delete this.bars;
     },
 
     render: function() {
+        var content = this.factory.create(this.props.comp.type);
+        var bars = this.factory.createBars(this);
+
         var compStyle = _.clone(this.props.comp.style);
+        var barStyle = {
+            display: this.props.comp.isSelect ? "block" : "none",
+            opacity: this.state.isMoving ? "0.2" : "1.0"
+        }
+
         return (
             <li className="xjComp"
                 style={compStyle}
-                ref="animateTarget">
-                <Hammer onPan={this._handleMove}
+                ref="animateTarget"
+                onClick={this._handleClick}>
+                <Hammer onPanStart={this._handleMoveStart}
+                        onPan={this._handleMove}
                         onPanEnd={this._handleMoveEnd}
                         vertical={true}>
-                    {this.content}
+                    {content}
                 </Hammer>
                 <Hammer onPan={this._handleRotate}
                         onPanEnd={this._handleRotateEnd}
                         vertical={true}>
-                    <div className="bar bar-rotate bar-radius" />
+                    <div style={barStyle}
+                        className="bar bar-rotate bar-radius" />
                 </Hammer>
-                <div className="bar bar-line" />
-                {this.bars}
+                <div style={barStyle} className="bar bar-line" />
+                {bars}
             </li>
         );
+    },
+
+    _handleMoveStart: function(e) {
+        this.setState({isMoving: true});
+        XJEditActions.select(this.props.comp.id);
     },
 
     _handleMove: function(e) {
@@ -62,6 +83,7 @@ var XJComponent = React.createClass({
     },
 
     _handleMoveEnd: function(e) {
+        this.setState({isMoving: false});
         this.uihelper.animateMoveEnd(e);
     },
 
@@ -72,6 +94,11 @@ var XJComponent = React.createClass({
     _handleRotateEnd: function(e) {
         this.uihelper.animateRotateEnd(e);
         // console.log("... is Rotate end")
+    },
+
+    _handleClick: function(e) {
+        e.stopPropagation();
+        XJEditActions.select(this.props.comp.id);
     },
 });
 

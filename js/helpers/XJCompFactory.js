@@ -33,6 +33,8 @@ XJCompFactory.prototype.createBars = function(comp) {
     for (var i = 0; i < _BarTypes.length; i++) {
         var barDirection = _BarTypes[i].split('_').pop().toLowerCase();
         var isCorner = (barDirection.length === 2);
+        var isSelect = comp.props.comp.isSelect;
+        var isMoving = comp.state.isMoving;
 
         var barProp = {
             type: XJEditorConstants[_BarTypes[i]],
@@ -42,7 +44,9 @@ XJCompFactory.prototype.createBars = function(comp) {
         }
         bars.push(<XJCompBar
             key={_BarTypes[i]}
-            bar={barProp} />)
+            bar={barProp}
+            isSelect={isSelect}
+            isMoving={isMoving} />)
     };
 
     return bars;

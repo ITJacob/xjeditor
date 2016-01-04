@@ -80,7 +80,7 @@ var XJGrid = React.createClass({
         var guide = XJGuideStore.getGuide();
 
         if ( _.isEqual(this.guide, guide) ) return;
-        console.log("not equal!");
+        // console.log("not equal!");
         this.guide = guide;
         var canvas = this.canvas;
 

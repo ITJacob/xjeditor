@@ -7,6 +7,8 @@
 
 var React = require('react');
 var XJCompStore = require('../stores/XJCompStore');
+var XJEditActions = require('../actions/XJEditActions');
+
 var XJMenuArea = require('../components/XJMenuArea.react');
 var XJEditorArea = require('../components/XJEditorArea.react');
 var XJGrid = require('../components/XJGrid.react');
@@ -42,7 +44,7 @@ var XJEditorApp = React.createClass({
             <div className="xjEditor">
                 <div className="xjBG" />
                 <XJMenuArea />
-                <div className="xjPhone">
+                <div className="xjPhone" onClick={this._handleClick}>
                     <div className="top" />
                     <div className="phone_menubar" />
                     <div className="scene_title_baner" />
@@ -55,6 +57,11 @@ var XJEditorApp = React.createClass({
                 </div>
             </div>
         );
+    },
+
+    _handleClick: function(e) {
+        e.stopPropagation();
+        XJEditActions.select();
     },
 
     /**

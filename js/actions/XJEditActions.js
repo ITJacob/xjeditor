@@ -32,6 +32,16 @@ var XJEditActions = {
     },
 
     /**
+     * @param  {object} target style
+     */
+    select: function(id) {
+        AppDispatcher.dispatch({
+            actionType: XJEditorConstants.XJ_COMP_ACTION_SELECT,
+            id: id
+        });
+    },
+
+    /**
      * @param  {string} id
      */
     destroy: function(id) {

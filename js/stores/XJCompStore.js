@@ -37,7 +37,8 @@ function create(type) {
     _comps[id] = {
         id: id,
         type: type,
-        style: newstyle
+        style: newstyle,
+        isSelect: false
     };
 }
 
@@ -48,6 +49,12 @@ function create(type) {
  *     updated.
  */
 function update(id, updates) {
+    if (!_comps.hasOwnProperty(id)) {
+        for (var k in _comps) {
+            _comps[k].isSelect = false;
+        }
+        return ;
+    }
     _.merge(_comps[id], updates);
 }
 
@@ -103,6 +110,14 @@ AppDispatcher.register(function(action) {
 
         case XJEditorConstants.XJ_COMP_ACTION_UPDATE:
             update(action.id, action.style);
+            XJCompStore.emitChange();
+        break;
+
+        case XJEditorConstants.XJ_COMP_ACTION_SELECT:
+            update(); // clean select
+            if (typeof action.id !== "undefined") {
+                update(action.id, {isSelect: true});
+            }
             XJCompStore.emitChange();
         break;
 

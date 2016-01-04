@@ -29,11 +29,17 @@ var XJCompBar = React.createClass({
             barRadius = <div className="bar-radius" />;
         }
 
+        var divStyle = {
+            display: this.props.isSelect ? "block" : "none",
+            opacity: this.props.isMoving ? "0.2" : "1.0"
+        }
+
         return (
             <Hammer onPan={this._handleResize}
                     onPanEnd={this._handleResizeEnd}
                     vertical={true}>
-                <div className={classNames(barClass)}>
+                <div style={divStyle}
+                    className={classNames(barClass)}>
                     {barRadius}
                 </div>
             </Hammer>
@@ -47,7 +53,6 @@ var XJCompBar = React.createClass({
 
     _handleResizeEnd: function(e) {
         this.uihelper.animateResizeEnd(e);
-        // console.log("... is resize end")
     },
 });
 
