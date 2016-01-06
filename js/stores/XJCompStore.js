@@ -38,7 +38,7 @@ function create(type) {
         id: id,
         type: type,
         style: newstyle,
-        isSelect: false
+        isSelect: true
     };
 }
 
@@ -63,7 +63,16 @@ function update(id, updates) {
  * @param  {string} id
  */
 function destroy(id) {
-    delete _comps[id];
+    if (!_comps.hasOwnProperty(id)) {
+        for (var k in _comps) {
+            if (_comps[k].isSelect) {
+                delete _comps[k];
+            }
+        }
+    }
+    else {
+        delete _comps[id];
+    }
 }
 
 var XJCompStore = assign({}, EventEmitter.prototype, {

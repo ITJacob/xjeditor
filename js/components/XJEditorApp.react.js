@@ -30,6 +30,21 @@ var XJEditorApp = React.createClass({
 
     componentDidMount: function() {
         XJCompStore.addChangeListener(this._onChange);
+        // ref: https://hulufei.gitbooks.io/react-tutorial/content/events.html
+        document.addEventListener("keydown", function (event) {
+            event.preventDefault();
+            var map = {
+                8: -1, // Delete
+                38: 0, // Up
+                39: 1, // Right
+                40: 2, // Down
+                37: 3, // Left
+            };
+            var mapped = map[event.which];
+            if (mapped == -1) {
+                XJEditActions.destroy();
+            }
+        });
     },
 
     componentWillUnmount: function() {
