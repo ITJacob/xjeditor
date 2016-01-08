@@ -38,6 +38,7 @@ function create(type) {
         id: id,
         type: type,
         style: newstyle,
+        content: "请在此处输入",
         isSelect: true
     };
 }

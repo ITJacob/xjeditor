@@ -32,7 +32,6 @@ var XJEditorApp = React.createClass({
         XJCompStore.addChangeListener(this._onChange);
         // ref: https://hulufei.gitbooks.io/react-tutorial/content/events.html
         document.addEventListener("keydown", function (event) {
-            event.preventDefault();
             var map = {
                 8: -1, // Delete
                 38: 0, // Up
@@ -42,6 +41,7 @@ var XJEditorApp = React.createClass({
             };
             var mapped = map[event.which];
             if (mapped == -1) {
+                event.preventDefault();
                 XJEditActions.destroy();
             }
         });

@@ -16,13 +16,13 @@ var XJEditorConstants = require('../constants/XJEditorConstants');
 
 var XJCompFactory = function() {};
 
-XJCompFactory.prototype.create = function(type) {
+XJCompFactory.prototype.create = function(comp) {
     var component;
-    if (type == XJEditorConstants.XJ_COMP_TYPE_TEXT) {
-        component = ( <XJCompText /> );
+    if (comp.type == XJEditorConstants.XJ_COMP_TYPE_TEXT) {
+        component = ( <XJCompText comp={comp}/> );
     }
-    else if (type == XJEditorConstants.XJ_COMP_TYPE_IMAGE) {
-        component = ( <XJCompImage /> );
+    else if (comp.type == XJEditorConstants.XJ_COMP_TYPE_IMAGE) {
+        component = ( <XJCompImage comp={comp}/> );
     }
 
     return component;

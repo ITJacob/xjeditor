@@ -41,7 +41,7 @@ var XJComponent = React.createClass({
     },
 
     render: function() {
-        var content = this.factory.create(this.props.comp.type);
+        var content = this.factory.create(this.props.comp);
         var bars = this.factory.createBars(this);
 
         var compStyle = _.clone(this.props.comp.style);
