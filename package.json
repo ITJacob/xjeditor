@@ -12,7 +12,8 @@
     "object-assign": "^4.0.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "react-hammerjs": "^0.4.3"
+    "react-hammerjs": "^0.4.3",
+    "react-quill": "^0.3.0"
   },
   "devDependencies": {
     "browserify": "^12.0.1",
