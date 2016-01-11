@@ -1,2 +1,1 @@
-# xjeditor
-html5 GUI editor, based on React
+#xj_scene_editor
