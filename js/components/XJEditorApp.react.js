@@ -11,6 +11,7 @@ var XJEditActions = require('../actions/XJEditActions');
 
 var XJMenuArea = require('../components/XJMenuArea.react');
 var XJEditorArea = require('../components/XJEditorArea.react');
+var XJPropertyArea = require('../components/XJPropertyArea.react');
 var XJGrid = require('../components/XJGrid.react');
 
 /**
@@ -54,6 +55,9 @@ var XJEditorApp = React.createClass({
                     <div className="tips">
                         为了获得更好的使用，建议使用谷歌浏览器（chrome）、360浏览器、IE11浏览器。
                     </div>
+                </div>
+                <div className="xjProperty">
+                    <XJPropertyArea allXJComps={this.state.allXJComps} />
                 </div>
             </div>
         );
