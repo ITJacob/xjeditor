@@ -11,6 +11,7 @@
     "lodash": "^3.10.1",
     "object-assign": "^4.0.1",
     "react": "^0.14.3",
+    "react-bootstrap": "^0.28.2",
     "react-dom": "^0.14.3",
     "react-hammerjs": "^0.4.3",
     "react-quill": "^0.3.0"
