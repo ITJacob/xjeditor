@@ -30,21 +30,6 @@ var XJEditorApp = React.createClass({
 
     componentDidMount: function() {
         XJCompStore.addChangeListener(this._onChange);
-        // ref: https://hulufei.gitbooks.io/react-tutorial/content/events.html
-        document.addEventListener("keydown", function (event) {
-            var map = {
-                8: -1, // Delete
-                38: 0, // Up
-                39: 1, // Right
-                40: 2, // Down
-                37: 3, // Left
-            };
-            var mapped = map[event.which];
-            if (mapped == -1) {
-                event.preventDefault();
-                XJEditActions.destroy();
-            }
-        });
     },
 
     componentWillUnmount: function() {
@@ -59,7 +44,7 @@ var XJEditorApp = React.createClass({
             <div className="xjEditor">
                 <div className="xjBG" />
                 <XJMenuArea />
-                <div className="xjPhone" onClick={this._handleClick}>
+                <div className="xjPhone">
                     <div className="top" />
                     <div className="phone_menubar" />
                     <div className="scene_title_baner" />
@@ -72,11 +57,6 @@ var XJEditorApp = React.createClass({
                 </div>
             </div>
         );
-    },
-
-    _handleClick: function(e) {
-        e.stopPropagation();
-        XJEditActions.select();
     },
 
     /**

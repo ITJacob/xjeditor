@@ -7,9 +7,11 @@
 
 var _ = require('lodash');
 var React = require('react');
+
 var XJEditorData = require('../constants/XJEditorData');
 var XJGuideStore = require('../stores/XJGuideStore');
 var XJGuideActions = require('../actions/XJGuideActions');
+var XJEditActions = require('../actions/XJEditActions');
 
 function getRGBa() {
     var args = Array.prototype.slice.call(arguments);
@@ -51,7 +53,7 @@ var XJGrid = React.createClass({
             top: 0
         }
         return (
-            <div className="xjGrid">
+            <div className="xjGrid" onClick={this._handleClick}>
                 <canvas className="eq-block-grid-inner"
                         style={gridStyle}
                         width={this.GridW}
@@ -109,7 +111,12 @@ var XJGrid = React.createClass({
                 0, Math.floor(j * this.hGap) + this.remainder, this.GridW, 1
             );
         }
-    }
+    },
+
+    _handleClick: function(e) {
+        e.stopPropagation();
+        XJEditActions.select();
+    },
 });
 
 module.exports = XJGrid;
