@@ -6,6 +6,9 @@
  */
 
 var React = require('react');
+var Button = require('react-bootstrap').Button;
+var ButtonToolbar = require('react-bootstrap').ButtonToolbar;
+
 var XJEditActions = require('../actions/XJEditActions');
 var XJEditorConstants = require('../constants/XJEditorConstants');
 
@@ -29,8 +32,12 @@ var XJMenuArea = React.createClass({
             );
         }
         return (
-            <div className="xjMArea">
-                {menus}
+            <div className="xjMBackground">
+                <div className="xjMArea">
+                    <ButtonToolbar>
+                        {menus}
+                    </ButtonToolbar>
+                </div>
             </div>
         );
     }
@@ -44,11 +51,9 @@ var XJMenu = React.createClass({
 
     render: function() {
         return (
-            <div className="xjMenu">
-                <button onClick={this._onCreateComp}>
-                    {this.props.info.name}
-                </button>
-            </div>
+            <Button bsStyle="primary" onClick={this._onCreateComp}>
+                {this.props.info.name}
+            </Button>
         );
     }
 });
