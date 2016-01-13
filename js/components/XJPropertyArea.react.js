@@ -44,7 +44,7 @@ var XJPropertyArea = React.createClass({
         for (var key in comp.style) {
 
             style.push(
-                <div> key + ": " + comp.style[key] </div>
+                <div key={key}> {key + ": " + comp.style[key]} </div>
             );
         }
         var content = comp.content;
