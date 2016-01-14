@@ -47,6 +47,10 @@ var XJGrid = React.createClass({
         XJGuideStore.removeGuideListener(this._paint);
     },
 
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return false; // grid don't need to re-render
+    },
+
     render: function() {
         var gridStyle = {
             left: 0,
