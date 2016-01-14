@@ -48,7 +48,8 @@ var XJGrid = React.createClass({
     },
 
     shouldComponentUpdate: function(nextProps, nextState) {
-        return false; // grid don't need to re-render
+        // grid re-paint the canvas, don't need to re-render
+        return false;
     },
 
     render: function() {

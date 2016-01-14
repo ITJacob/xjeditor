@@ -26,7 +26,7 @@ var XJComponent = React.createClass({
 
     componentWillMount: function() {
         this.uihelper = new XJCompUIHelper(this);
-        this.factory = new XJCompFactory();
+        // this.factory = new XJCompFactory();
     },
 
     componentDidMount: function() {
@@ -35,14 +35,13 @@ var XJComponent = React.createClass({
 
     componentWillUnmount: function() {
         delete this.uihelper;
-        delete this.factory;
-        // delete this.content;
-        // delete this.bars;
+        // delete this.factory;
     },
 
     render: function() {
-        var content = this.factory.create(this.props.comp);
-        var bars = this.factory.createBars(this);
+        var comp = this.props.comp;
+        var content = XJCompFactory.create(comp);
+        var bars = XJCompFactory.createBars(this);
 
         var compStyle = _.clone(this.props.comp.style);
         var barStyle = {

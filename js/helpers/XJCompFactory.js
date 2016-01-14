@@ -14,42 +14,43 @@ var XJCompBar = require('../components/XJCompBar.react');
 var XJEditorConstants = require('../constants/XJEditorConstants');
 
 
-var XJCompFactory = function() {};
+var XJCompFactory = {
 
-XJCompFactory.prototype.create = function(comp) {
-    var component;
-    if (comp.type == XJEditorConstants.XJ_COMP_TYPE_TEXT) {
-        component = ( <XJCompText comp={comp}/> );
-    }
-    else if (comp.type == XJEditorConstants.XJ_COMP_TYPE_IMAGE) {
-        component = ( <XJCompImage comp={comp}/> );
-    }
-
-    return component;
-};
-
-XJCompFactory.prototype.createBars = function(comp) {
-    var bars = [];
-    for (var i = 0; i < _BarTypes.length; i++) {
-        var barDirection = _BarTypes[i].split('_').pop().toLowerCase();
-        var isCorner = (barDirection.length === 2);
-        var isSelect = comp.props.comp.isSelect;
-        var isMoving = comp.state.isMoving;
-
-        var barProp = {
-            type: XJEditorConstants[_BarTypes[i]],
-            barClass: "bar-" + barDirection,
-            isCorner: isCorner,
-            comp: comp,
+    create: function(comp) {
+        var component;
+        if (comp.type == XJEditorConstants.XJ_COMP_TYPE_TEXT) {
+            component = ( <XJCompText comp={comp}/> );
         }
-        bars.push(<XJCompBar
-            key={_BarTypes[i]}
-            bar={barProp}
-            isSelect={isSelect}
-            isMoving={isMoving} />)
-    };
+        else if (comp.type == XJEditorConstants.XJ_COMP_TYPE_IMAGE) {
+            component = ( <XJCompImage comp={comp}/> );
+        }
 
-    return bars;
+        return component;
+    },
+
+    createBars: function(xjComp) {
+        var bars = [];
+        for (var i = 0; i < _BarTypes.length; i++) {
+            var barDirection = _BarTypes[i].split('_').pop().toLowerCase();
+            var isCorner = (barDirection.length === 2);
+            var isSelect = xjComp.props.comp.isSelect;
+            var isMoving = xjComp.state.isMoving;
+
+            var barProp = {
+                type: XJEditorConstants[_BarTypes[i]],
+                barClass: "bar-" + barDirection,
+                isCorner: isCorner,
+                comp: xjComp,
+            }
+            bars.push(<XJCompBar
+                key={_BarTypes[i]}
+                bar={barProp}
+                isSelect={isSelect}
+                isMoving={isMoving} />)
+        };
+
+        return bars;
+    },
 };
 
 var _BarTypes = [
