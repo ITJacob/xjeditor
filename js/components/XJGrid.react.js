@@ -13,22 +13,8 @@ var XJGuideStore = require('../stores/XJGuideStore');
 var XJGuideActions = require('../actions/XJGuideActions');
 var XJEditActions = require('../actions/XJEditActions');
 
-function getRGBa() {
-    var args = Array.prototype.slice.call(arguments);
-
-    //ref: http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-    if (args.length == 2) {
-        var result =
-            /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(args[0]);
-
-        args = [
-            parseInt(result[1], 16), parseInt(result[2], 16),
-            parseInt(result[3], 16), args[1]
-        ];
-    }
-
-    return "rgba(" + args.join(",") + ")";
-}
+var XJTools = require('../helpers/XJTools');
+var getRGBa = XJTools.getRGBa;
 
 var XJGrid = React.createClass({
 
