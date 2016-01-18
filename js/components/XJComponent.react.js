@@ -40,12 +40,16 @@ var XJComponent = React.createClass({
 
     render: function() {
         var comp = this.props.comp;
+
+        var isSelect =
+            _.indexOf(this.props.selectedIDs, comp.id) !== -1;
+
         var content = XJCompFactory.create(comp);
-        var bars = XJCompFactory.createBars(this);
+        var bars = XJCompFactory.createBars(this, isSelect);
 
         var compStyle = _.clone(this.props.comp.style);
         var barStyle = {
-            display: this.props.comp.isSelect ? "block" : "none",
+            display: isSelect ? "block" : "none",
             opacity: this.state.isMoving ? "0.2" : "1.0"
         }
 
@@ -97,7 +101,10 @@ var XJComponent = React.createClass({
 
     _handleClick: function(e) {
         e.stopPropagation();
-        XJEditActions.select(this.props.comp.id);
+        // XJEditActions.select(this.props.comp.id);
+        this.props.onSelect(this.props.comp.id);
+    },
+
     },
 });
 

@@ -30,6 +30,8 @@ var XJKeyboardMap = {
     map: {
         8: Mirror.DELETE, // Delete
         17: Mirror.CONTROL, // Control
+        91: Mirror.CONTROL, // Mac Command
+
         38: Mirror.UP, // Up
         39: Mirror.RIGHT, // Right
         40: Mirror.DOWN, // Down

@@ -28,12 +28,11 @@ var XJCompFactory = {
         return component;
     },
 
-    createBars: function(xjComp) {
+    createBars: function(xjComp, isSelect) {
         var bars = [];
         for (var i = 0; i < _BarTypes.length; i++) {
             var barDirection = _BarTypes[i].split('_').pop().toLowerCase();
             var isCorner = (barDirection.length === 2);
-            var isSelect = xjComp.props.comp.isSelect;
             var isMoving = xjComp.state.isMoving;
 
             var barProp = {
