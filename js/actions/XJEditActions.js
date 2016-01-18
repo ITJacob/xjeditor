@@ -42,12 +42,12 @@ var XJEditActions = {
     },
 
     /**
-     * @param  {string} id
+     * @param  {array} ids
      */
-    destroy: function(id) {
+    destroy: function(ids) {
         AppDispatcher.dispatch({
             actionType: XJEditorConstants.XJ_COMP_ACTION_DESTROY,
-            id: id
+            ids: ids
         });
     },
 

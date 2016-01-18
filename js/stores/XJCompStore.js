@@ -61,19 +61,15 @@ function update(id, updates) {
 
 /**
  * Delete a XJComponent.
- * @param  {string} id
+ * @param  {array} ids
  */
-function destroy(id) {
-    if (!_comps.hasOwnProperty(id)) {
-        for (var k in _comps) {
-            if (_comps[k].isSelect) {
-                delete _comps[k];
-            }
+function destroy(ids) {
+    for (var i = 0; i < ids.length; i++) {
+        var id = ids[i];
+        if (_comps.hasOwnProperty(id)) {
+            delete _comps[id];
         }
-    }
-    else {
-        delete _comps[id];
-    }
+    };
 }
 
 var XJCompStore = assign({}, EventEmitter.prototype, {
@@ -132,7 +128,7 @@ AppDispatcher.register(function(action) {
         break;
 
         case XJEditorConstants.XJ_COMP_ACTION_DESTROY:
-            destroy(action.id);
+            destroy(action.ids);
             XJCompStore.emitChange();
         break;
 
