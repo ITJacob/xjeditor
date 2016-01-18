@@ -13,6 +13,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var XJEditorConstants = require('../constants/XJEditorConstants');
 
 var CHANGE_EVENT = 'change';
+var BLUR_EVENT = 'blur';
 
 var _comps = {};
 
@@ -98,7 +99,19 @@ var XJCompStore = assign({}, EventEmitter.prototype, {
      */
     removeChangeListener: function(callback) {
         this.removeListener(CHANGE_EVENT, callback);
-    }
+    },
+
+    emitBlur: function() {
+        this.emit(BLUR_EVENT);
+    },
+
+    addBlurListener: function(callback) {
+        this.on(BLUR_EVENT, callback);
+    },
+
+    removeBlurListener: function(callback) {
+        this.removeListener(BLUR_EVENT, callback);
+    },
 });
 
 // Register callback to handle all updates
@@ -125,6 +138,10 @@ AppDispatcher.register(function(action) {
                 update(action.id, {isSelect: true});
             }
             XJCompStore.emitChange();
+        break;
+
+        case XJEditorConstants.XJ_COMP_ACTION_BLUR:
+            XJCompStore.emitBlur();
         break;
 
         case XJEditorConstants.XJ_COMP_ACTION_DESTROY:

@@ -27,12 +27,16 @@ var XJEditorArea = React.createClass({
         document.addEventListener("keydown", this._onKeyDown);
 
         document.addEventListener("keyup", this._onKeyUp);
+
+        XJCompStore.addBlurListener (this._onBlur);
     },
 
     componentWillUnmount: function() {
         document.removeEventListener("keydown", this._onKeyDown);
 
         document.removeEventListener("keyup", this._onKeyUp);
+
+        XJCompStore.removeBlurListener(this._onBlur);
     },
 
     render: function() {
@@ -89,6 +93,9 @@ var XJEditorArea = React.createClass({
             this.setState({isMultiple: false});
         }
     },
+
+    _onBlur: function() {
+        this.setState({selectedIDs: []});
     }
 });
 

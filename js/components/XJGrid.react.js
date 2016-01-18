@@ -106,7 +106,7 @@ var XJGrid = React.createClass({
 
     _handleClick: function(e) {
         e.stopPropagation();
-        XJEditActions.select();
+        XJEditActions.blur();
     },
 });
 

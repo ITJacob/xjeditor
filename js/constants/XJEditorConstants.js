@@ -17,6 +17,7 @@ module.exports = keyMirror({
     XJ_COMP_ACTION_DESTROY: null,
     XJ_COMP_ACTION_UPDATE: null,
     XJ_COMP_ACTION_SELECT: null,
+    XJ_COMP_ACTION_BLUR: null,
 
     XJ_COMP_TYPE_TEXT: null,
     XJ_COMP_TYPE_IMAGE: null,
