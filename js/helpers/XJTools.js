@@ -28,6 +28,45 @@ var XJTools = {
         }
 
         return "rgba(" + args.join(",") + ")";
+    },
+
+    /**
+     * create a transform String.
+     * @param  {X, Y, Z, R} or
+     * translate3d(Xpx, Ypx, Zpx) rotateZ(Rdeg); String
+     */
+    getTransform: function(x, y, z, r) {
+        return "translate3d(" +
+                x + "px, " +
+                y + "px, " +
+                z + ") rotateZ(" +
+                r + "deg)";
+    },
+
+    /**
+     * create a transform object.
+     * @param str: "translate3d(0px, -10px, 100px) rotateZ(-29deg);"
+     * will return a
+     * Object {x: 0, y: -10, z: 100, r: -29}
+     */
+    parseTransform: function(str) {
+        var result = {
+            x: 0,
+            y: 0,
+            z: 0,
+            r: 0
+        };
+        var step1 = str.match(/\((.| )+?\)/g);
+        result.r = parseInt(step1.pop().match(/([-\d]+)/g));
+
+        if (step1.length > 0) {
+            var step2 = step1.pop().match(/([-\d]+)/g);
+            result.x = parseInt(step2[0]);
+            result.y = parseInt(step2[1]);
+            result.z = parseInt(step2[2]);
+        }
+
+        return result;
     }
 };
 

@@ -78,16 +78,18 @@ var XJComponent = React.createClass({
 
     _handleMoveStart: function(e) {
         this.setState({isMoving: true});
-        XJEditActions.select(this.props.comp.id);
+        // XJEditActions.select(this.props.comp.id);
     },
 
     _handleMove: function(e) {
-        this.uihelper.animateMove(e);
+        // this.uihelper.animateMove(e);
+        XJEditActions.move(this.props.selectedIDs, e);
     },
 
     _handleMoveEnd: function(e) {
         this.setState({isMoving: false});
-        this.uihelper.animateMoveEnd(e);
+        // this.uihelper.animateMoveEnd(e);
+        XJEditActions.moveEnd(this.props.selectedIDs, e);
     },
 
     _handleRotate: function(e) {

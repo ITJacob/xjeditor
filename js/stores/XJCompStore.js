@@ -11,6 +11,7 @@ var assign = require('object-assign');
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var XJEditorConstants = require('../constants/XJEditorConstants');
+var XJTools = require('../helpers/XJTools');
 
 var CHANGE_EVENT = 'change';
 var BLUR_EVENT = 'blur';
@@ -34,13 +35,13 @@ function create(type) {
         top: length*25 + "px", //TODO update init position calculation
         zIndex: 100 + length,
         rotateZ: "0",
+        transform: XJTools.getTransform(0, 0, 0, 0),
     };
     _comps[id] = {
         id: id,
         type: type,
         style: newstyle,
         content: "请在此处输入",
-        isSelect: true
     };
 }
 
@@ -51,17 +52,15 @@ function create(type) {
  *     updated.
  */
 function update(id, updates) {
-    if (!_comps.hasOwnProperty(id)) {
-        for (var k in _comps) {
-            _comps[k].isSelect = false;
-        }
-        return ;
-    }
     _.merge(_comps[id], updates);
 }
 
+function multiUpdate(newComps) {
+    _.merge(_comps, newComps);
+}
+
 /**
- * Delete a XJComponent.
+ * Delete XJComponents.
  * @param  {array} ids
  */
 function destroy(ids) {
@@ -87,16 +86,10 @@ var XJCompStore = assign({}, EventEmitter.prototype, {
         this.emit(CHANGE_EVENT);
     },
 
-    /**
-     * @param {function} callback
-     */
     addChangeListener: function(callback) {
         this.on(CHANGE_EVENT, callback);
     },
 
-    /**
-     * @param {function} callback
-     */
     removeChangeListener: function(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
@@ -128,15 +121,12 @@ AppDispatcher.register(function(action) {
         break;
 
         case XJEditorConstants.XJ_COMP_ACTION_UPDATE:
-            update(action.id, action.style);
+            update(action.id, action.comp);
             XJCompStore.emitChange();
         break;
 
-        case XJEditorConstants.XJ_COMP_ACTION_SELECT:
-            update(); // clean select
-            if (typeof action.id !== "undefined") {
-                update(action.id, {isSelect: true});
-            }
+        case XJEditorConstants.XJ_COMP_ACTION_MULTI_UPDATE:
+            multiUpdate(action.comps);
             XJCompStore.emitChange();
         break;
 
