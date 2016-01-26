@@ -84,7 +84,7 @@ var XJGrid = React.createClass({
             var c = this.DefaultColor;
 
             if (guide.hasOwnProperty(key)) {
-                c = getRGBa("#FFE900", guide[key]);
+                c = getRGBa("#FFB200", guide[key]);
             }
             canvas.fillStyle = c;
             canvas.fillRect(Math.floor(i * this.vGap), 0, 1, this.GridH);
@@ -95,7 +95,7 @@ var XJGrid = React.createClass({
             var c = this.DefaultColor;
 
             if (guide.hasOwnProperty(key)) {
-                c = getRGBa("#FFE900", guide[key]);
+                c = getRGBa("#FFB200", guide[key]);
             }
             canvas.fillStyle = c;
             canvas.fillRect(

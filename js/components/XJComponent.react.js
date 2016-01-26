@@ -11,6 +11,7 @@ var Hammer = require('react-hammerjs');
 
 var XJEditActions = require('../actions/XJEditActions');
 var XJActiveActions = require('../actions/XJActiveActions');
+var XJGuideActions = require('../actions/XJGuideActions');
 
 var XJEditorConstants = require('../constants/XJEditorConstants');
 var XJCompFactory = require('../helpers/XJCompFactory');
@@ -82,20 +83,19 @@ var XJComponent = React.createClass({
     },
 
     _handleMove: function(e) {
-        XJActiveActions.move(e)
+        XJActiveActions.move(e);
+        XJGuideActions.sync(
+            this.refs.animateTarget.style, e);
     },
 
     _handleMoveEnd: function(e) {
         this.setState({isMoving: false});
         XJActiveActions.moveEnd(e);
         XJEditActions.refresh();
+        XJGuideActions.stop();
     },
 
     // for Rotate Action
-    // _handleRotateStart: function() {
-    //     XJActiveActions.select(
-    //         this.props.comp.id, this.props.isMultiple);
-    // },
 
     _handleRotate: function(e) {
         XJActiveActions.rotate(e, this.refs.animateTarget);
