@@ -10,34 +10,49 @@ var Panel = require('react-bootstrap').Panel;
 var ListGroup = require('react-bootstrap').ListGroup;
 var ListGroupItem = require('react-bootstrap').ListGroupItem;
 
-var XJPropertyArea = React.createClass({
-    render: function() {
-        var comps = this._findSelect(this.props.allXJComps);
-        var panels = [];
+var XJActiveStore = require('../stores/XJActiveStore');
+var XJTools = require('../helpers/XJTools');
 
-        for (var i = 0; i < comps.length; i++) {
-            var panel = this._createPanel(comps[i]);
-            panels.push(panel);
-        };
+
+function getXJCompState() {
+    return {
+        selectedComp: XJActiveStore.getSelected(),
+    };
+}
+
+var XJPropertyArea = React.createClass({
+
+    getInitialState: function() {
+        return getXJCompState();
+    },
+
+    componentDidMount: function() {
+        XJActiveStore.addSelectListener(this._onChange);
+        XJActiveStore.addActiveListener(this._onChange);
+    },
+
+    componentWillUnmount: function() {
+        XJActiveStore.removeSelectListener(this._onChange);
+        XJActiveStore.removeActiveListener(this._onChange);
+    },
+
+
+    render: function() {
+        var comp = this.state.selectedComp;
+        var panel = this._createPanel(comp);
 
         return (
             <div className="XJPArea">
-                {panels}
+                {panel}
             </div>
         );
     },
 
-    _findSelect: function(allComps) {
-        var comps = [];
-        for (var key in allComps) {
-            if (allComps[key].isSelect) {
-                comps.push( allComps[key] );
-            }
-        }
-        return comps;
-    },
-
     _createPanel: function(comp) {
+        if (!comp) {
+            comp = this._getDefault();
+        }
+
         var header = "控件 id:" + comp.id;
         var type = comp.type;
         var style = [];
@@ -49,7 +64,7 @@ var XJPropertyArea = React.createClass({
         }
         var content = comp.content;
         return (
-            <Panel key={comp.id} collapsible defaultExpanded header={header}>
+            <Panel collapsible defaultExpanded header={header}>
                 <ListGroup fill>
                     <ListGroupItem>种类: {type}</ListGroupItem>
                     <ListGroupItem>样式: {style}</ListGroupItem>
@@ -58,6 +73,19 @@ var XJPropertyArea = React.createClass({
             </Panel>
         );
     },
+
+    _getDefault: function() {
+        return {
+            id: "",
+            type: "",
+            content: "",
+            style: [],
+        }
+    },
+
+    _onChange: function() {
+        this.setState(getXJCompState());
+    }
 });
 
 module.exports = XJPropertyArea;

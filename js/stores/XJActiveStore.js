@@ -95,7 +95,6 @@ var XJActiveStore = assign({}, EventEmitter.prototype, {
     },
 
     emitActive: function() {
-        console.log("emitActive!");
         this.emit(ACTIVE_EVENT);
     },
 
@@ -108,7 +107,6 @@ var XJActiveStore = assign({}, EventEmitter.prototype, {
     },
 
     emitSelect: function() {
-        console.log("emitSelect!");
         this.emit(SELECT_EVENT);
     },
 
