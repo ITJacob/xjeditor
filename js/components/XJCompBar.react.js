@@ -58,8 +58,6 @@ var XJCompBar = React.createClass({
 
     _handleResizeStart: function(e) {
         this.setState({origin: _.clone(this.props.bar.comp.style)});
-        XJActiveActions.select(
-            this.props.bar.comp.id, this.props.isMultiple);
     },
 
     _handleResize: function(e) {
@@ -69,6 +67,8 @@ var XJCompBar = React.createClass({
 
     _handleResizeEnd: function(e) {
         XJEditActions.refresh();
+        XJActiveActions.select(
+            this.props.bar.comp.id, this.props.isMultiple);
     },
 
     _getDetection: function(e) {

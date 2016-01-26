@@ -11,7 +11,7 @@ var React = require('react');
 var XJEditorData = require('../constants/XJEditorData');
 var XJGuideStore = require('../stores/XJGuideStore');
 var XJGuideActions = require('../actions/XJGuideActions');
-var XJEditActions = require('../actions/XJEditActions');
+var XJActiveActions = require('../actions/XJActiveActions');
 
 var XJTools = require('../helpers/XJTools');
 var getRGBa = XJTools.getRGBa;
@@ -106,6 +106,7 @@ var XJGrid = React.createClass({
 
     _handleClick: function(e) {
         e.stopPropagation();
+        XJActiveActions.select();
     },
 });
 

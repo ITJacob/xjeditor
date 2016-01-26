@@ -92,10 +92,10 @@ var XJComponent = React.createClass({
     },
 
     // for Rotate Action
-    _handleRotateStart: function() {
-        XJActiveActions.select(
-            this.props.comp.id, this.props.isMultiple);
-    },
+    // _handleRotateStart: function() {
+    //     XJActiveActions.select(
+    //         this.props.comp.id, this.props.isMultiple);
+    // },
 
     _handleRotate: function(e) {
         XJActiveActions.rotate(e, this.refs.animateTarget);
@@ -103,12 +103,13 @@ var XJComponent = React.createClass({
 
     _handleRotateEnd: function(e) {
         XJEditActions.refresh();
+        XJActiveActions.select(
+            this.props.comp.id, this.props.isMultiple);
     },
 
     // for click
     _handleClick: function(e) {
         e.stopPropagation();
-        // this.props.onSelect(this.props.comp.id);
 
         XJActiveActions.select(
             this.props.comp.id, this.props.isMultiple);
