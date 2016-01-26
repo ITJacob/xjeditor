@@ -7,7 +7,7 @@
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var XJEditorConstants = require('../constants/XJEditorConstants');
-var XJCompUIHandler = require('../helpers/XJCompUIHandler');
+var XJActiveStore = require('../stores/XJActiveStore');
 
 var XJEditActions = {
 
@@ -33,41 +33,11 @@ var XJEditActions = {
         });
     },
 
-    move: function(ids, e) {
-        var newComps = XJCompUIHandler.move(ids, e);
+    refresh: function() {
+        var newComps = XJActiveStore.getSelectedComps();
         AppDispatcher.dispatch({
             actionType: XJEditorConstants.XJ_COMP_ACTION_MULTI_UPDATE,
             comps: newComps
-        });
-    },
-
-    moveEnd: function(ids, e) {
-        var newComps = XJCompUIHandler.moveEnd(ids, e);
-        AppDispatcher.dispatch({
-            actionType: XJEditorConstants.XJ_COMP_ACTION_MULTI_UPDATE,
-            comps: newComps
-        });
-    },
-
-    rotate: function(ids, e) {
-        var newComps = XJCompUIHandler.rotate(ids, e);
-        AppDispatcher.dispatch({
-            actionType: XJEditorConstants.XJ_COMP_ACTION_MULTI_UPDATE,
-            comps: newComps
-        });
-    },
-
-    resize: function(ids, e) {
-        var newComps = XJCompUIHandler.resize(ids, e);
-        AppDispatcher.dispatch({
-            actionType: XJEditorConstants.XJ_COMP_ACTION_MULTI_UPDATE,
-            comps: newComps
-        });
-    },
-
-    blur: function() {
-        AppDispatcher.dispatch({
-            actionType: XJEditorConstants.XJ_COMP_ACTION_BLUR,
         });
     },
 
