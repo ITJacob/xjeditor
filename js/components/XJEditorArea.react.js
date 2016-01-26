@@ -28,7 +28,6 @@ var XJEditorArea = React.createClass({
 
         document.addEventListener("keyup", this._onKeyUp);
 
-        XJCompStore.addBlurListener (this._onBlur);
     },
 
     componentWillUnmount: function() {
@@ -36,7 +35,6 @@ var XJEditorArea = React.createClass({
 
         document.removeEventListener("keyup", this._onKeyUp);
 
-        XJCompStore.removeBlurListener(this._onBlur);
     },
 
     render: function() {
@@ -94,9 +92,6 @@ var XJEditorArea = React.createClass({
         }
     },
 
-    _onBlur: function() {
-        this.setState({selectedIDs: []});
-    }
 });
 
 module.exports = XJEditorArea;
