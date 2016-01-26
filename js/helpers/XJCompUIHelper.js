@@ -5,6 +5,9 @@
  * XJCompUIHelper
  */
 
+// Deprecated
+
+
 var _ = require('lodash');
 var XJEditActions = require('../actions/XJEditActions');
 var XJGuideActions = require('../actions/XJGuideActions');

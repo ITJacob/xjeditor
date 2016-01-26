@@ -34,18 +34,22 @@ var XJCompFactory = {
             var barDirection = _BarTypes[i].split('_').pop().toLowerCase();
             var isCorner = (barDirection.length === 2);
             var isMoving = xjComp.state.isMoving;
+            var isMultiple = xjComp.props.isMultiple;
+            var selectedIDs = xjComp.props.selectedIDs
 
             var barProp = {
                 type: XJEditorConstants[_BarTypes[i]],
                 barClass: "bar-" + barDirection,
                 isCorner: isCorner,
-                comp: xjComp,
+                comp: xjComp.props.comp,
             }
             bars.push(<XJCompBar
                 key={_BarTypes[i]}
                 bar={barProp}
                 isSelect={isSelect}
-                isMoving={isMoving} />)
+                isMoving={isMoving}
+                isMultiple={isMultiple}
+                selectedIDs={selectedIDs} />)
         };
 
         return bars;

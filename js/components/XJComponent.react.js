@@ -10,8 +10,9 @@ var React = require('react');
 var Hammer = require('react-hammerjs');
 
 var XJEditActions = require('../actions/XJEditActions');
+var XJActiveActions = require('../actions/XJActiveActions');
+
 var XJEditorConstants = require('../constants/XJEditorConstants');
-var XJCompUIHelper = require('../helpers/XJCompUIHelper');
 var XJCompFactory = require('../helpers/XJCompFactory');
 var XJCompBar = require('../components/XJCompBar.react');
 
@@ -20,22 +21,19 @@ var XJComponent = React.createClass({
 
     getInitialState: function() {
         return {
-            isMoving: false
+            isMoving: false, //only influence css
         };
     },
 
-    componentWillMount: function() {
-        this.uihelper = new XJCompUIHelper(this);
-        // this.factory = new XJCompFactory();
-    },
-
     componentDidMount: function() {
-        this.uihelper.setTarget(this.refs.animateTarget);
+        XJActiveActions.register(
+            this.props.comp, this.refs.animateTarget.style);
     },
 
     componentWillUnmount: function() {
-        delete this.uihelper;
-        // delete this.factory;
+        //wait for other actions
+        var id = this.props.comp.id;
+        setTimeout(function(){ XJActiveActions.unregister(id); }, 1);
     },
 
     render: function() {
@@ -76,38 +74,46 @@ var XJComponent = React.createClass({
         );
     },
 
+    // for Move Action
     _handleMoveStart: function(e) {
         this.setState({isMoving: true});
-        // XJEditActions.select(this.props.comp.id);
+        XJActiveActions.select(
+            this.props.comp.id, this.props.isMultiple);
     },
 
     _handleMove: function(e) {
-        // this.uihelper.animateMove(e);
-        XJEditActions.move(this.props.selectedIDs, e);
+        XJActiveActions.move(e)
     },
 
     _handleMoveEnd: function(e) {
         this.setState({isMoving: false});
-        // this.uihelper.animateMoveEnd(e);
-        XJEditActions.moveEnd(this.props.selectedIDs, e);
+        XJActiveActions.moveEnd(e);
+        XJEditActions.refresh();
+    },
+
+    // for Rotate Action
+    _handleRotateStart: function() {
+        XJActiveActions.select(
+            this.props.comp.id, this.props.isMultiple);
     },
 
     _handleRotate: function(e) {
-        this.uihelper.animateRotate(e);
+        XJActiveActions.rotate(e, this.refs.animateTarget);
     },
 
     _handleRotateEnd: function(e) {
-        this.uihelper.animateRotateEnd(e);
-        // console.log("... is Rotate end")
+        XJEditActions.refresh();
     },
 
+    // for click
     _handleClick: function(e) {
         e.stopPropagation();
-        // XJEditActions.select(this.props.comp.id);
-        this.props.onSelect(this.props.comp.id);
+        // this.props.onSelect(this.props.comp.id);
+
+        XJActiveActions.select(
+            this.props.comp.id, this.props.isMultiple);
     },
 
-    },
 });
 
 module.exports = XJComponent;
