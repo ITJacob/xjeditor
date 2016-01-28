@@ -53,7 +53,7 @@ var XJPropertyArea = React.createClass({
             comp = this._getDefault();
         }
 
-        var header = "控件 id:" + comp.id;
+        var header = "控件 id: " + comp.id;
         var type = comp.type;
         var style = [];
         for (var key in comp.style) {

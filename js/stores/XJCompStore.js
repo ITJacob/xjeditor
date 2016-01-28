@@ -33,7 +33,6 @@ function create(type) {
         left: "0px",
         top: length*25 + "px", //TODO update init position calculation
         zIndex: 100 + length,
-        rotateZ: "0",
         transform: XJTools.getTransform(0, 0, 0, 0),
     };
     _comps[id] = {

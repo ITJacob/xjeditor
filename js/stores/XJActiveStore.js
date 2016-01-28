@@ -32,7 +32,7 @@ function register(comp, ref) {
         _refs[comp.id] = ref;
     }
 
-    _setID(comp.id);
+    select(comp.id, false);
 }
 
 function unregister(id) {
@@ -41,7 +41,7 @@ function unregister(id) {
         delete _refs[id];
     }
 
-    _setID("");
+    select("", false);
 }
 
 function select(id, isMultiple) {

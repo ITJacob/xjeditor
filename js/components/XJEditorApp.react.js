@@ -57,7 +57,7 @@ var XJEditorApp = React.createClass({
                     </div>
                 </div>
                 <div className="xjProperty">
-                    <XJPropertyArea allXJComps={this.state.allXJComps} />
+                    <XJPropertyArea />
                 </div>
             </div>
         );
