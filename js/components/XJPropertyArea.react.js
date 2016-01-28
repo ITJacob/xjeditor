@@ -5,14 +5,17 @@
  * XJPropertyArea
  */
 
+var _ = require('lodash');
 var React = require('react');
+var ReactQuill = require('react-quill');
 var Panel = require('react-bootstrap').Panel;
 var ListGroup = require('react-bootstrap').ListGroup;
 var ListGroupItem = require('react-bootstrap').ListGroupItem;
 
 var XJActiveStore = require('../stores/XJActiveStore');
 var XJTools = require('../helpers/XJTools');
-
+var XJEditActions = require('../actions/XJEditActions');
+var XJActiveActions = require('../actions/XJActiveActions');
 
 function getXJCompState() {
     return {
@@ -35,7 +38,6 @@ var XJPropertyArea = React.createClass({
         XJActiveStore.removeSelectListener(this._onChange);
         XJActiveStore.removeActiveListener(this._onChange);
     },
-
 
     render: function() {
         var comp = this.state.selectedComp;
@@ -68,10 +70,31 @@ var XJPropertyArea = React.createClass({
                 <ListGroup fill>
                     <ListGroupItem>种类: {type}</ListGroupItem>
                     <ListGroupItem>样式: {style}</ListGroupItem>
-                    <ListGroupItem>内容: {content}</ListGroupItem>
+                    <ListGroupItem>
+                        <div>内容:</div><br/>
+                        <ReactQuill ref="quill"
+                            theme="snow"
+                            onChange={this.onTextChange}
+                            value={content}>
+                            <div key="editor"
+                                ref="editor"
+                                className="quill-contents" />
+                            <ReactQuill.Toolbar
+                                key="toolbar"
+                                ref="toolbar"
+                                items={ReactQuill.Toolbar.defaultItems} />
+                        </ReactQuill>
+                    </ListGroupItem>
                 </ListGroup>
             </Panel>
         );
+    },
+
+    onTextChange: function(value) {
+        var comp = this.state.selectedComp;
+        if (!comp) return ;
+        XJActiveActions.update({content: value});
+        XJEditActions.refresh();
     },
 
     _getDefault: function() {
