@@ -34,6 +34,13 @@ var XJActiveActions = {
         });
     },
 
+    update: function(comp) {
+        AppDispatcher.dispatch({
+            actionType: XJEditorConstants.XJ_ACTIVE_ACTION_UPDATE,
+            comp: comp,
+        });
+    },
+
     move: function(e) {
         var newComps = XJCompUIHandler.move(e);
         AppDispatcher.dispatch({

@@ -10,6 +10,7 @@ var keyMirror = require('keymirror');
 module.exports = keyMirror({
     XJ_ACTIVE_ACTION_SELECT: null,
     XJ_ACTIVE_ACTION_MULTI_UPDATE: null,
+    XJ_ACTIVE_ACTION_UPDATE: null,
     XJ_ACTIVE_ACTION_REGISTER: null,
     XJ_ACTIVE_ACTION_UNREGISTER: null,
 

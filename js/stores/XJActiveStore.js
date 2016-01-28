@@ -64,6 +64,9 @@ function multiUpdate(newComps) {
     _.merge(_comps, newComps);
 }
 
+function update(newComp) {
+    _.merge(_comps[_selectedID], newComp);
+}
 
 var XJActiveStore = assign({}, EventEmitter.prototype, {
 
@@ -138,6 +141,11 @@ AppDispatcher.register(function(action) {
         case XJEditorConstants.XJ_ACTIVE_ACTION_SELECT:
             select(action.id, action.isMultiple)
             XJActiveStore.emitSelect();
+        break;
+
+        case XJEditorConstants.XJ_ACTIVE_ACTION_UPDATE:
+            update(action.comp);
+            XJActiveStore.emitActive();
         break;
 
         case XJEditorConstants.XJ_ACTIVE_ACTION_MULTI_UPDATE:
