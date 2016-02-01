@@ -9,6 +9,7 @@ var React = require('react');
 var XJCompStore = require('../stores/XJCompStore');
 var XJEditActions = require('../actions/XJEditActions');
 
+var XJPageArea = require('../components/XJPageArea.react');
 var XJMenuArea = require('../components/XJMenuArea.react');
 var XJEditorArea = require('../components/XJEditorArea.react');
 var XJPropertyArea = require('../components/XJPropertyArea.react');
@@ -41,9 +42,14 @@ var XJEditorApp = React.createClass({
      * @return {object}
      */
     render: function() {
+        var sceneID = this.props.params.sceneID;
+        var pageID = this.props.location.query.pageID;
         return (
             <div className="xjEditor">
                 <div className="xjBG" />
+                <div className="xjPage">
+                    <XJPageArea pageNumber={pageID} />
+                </div>
                 <XJMenuArea />
                 <div className="xjPhone">
                     <div className="top" />

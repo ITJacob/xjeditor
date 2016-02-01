@@ -59,6 +59,17 @@ body {
     z-index: 1001;
 }
 
+/* left part */
+.xjPage {
+    position: fixed;
+    left: 0;
+    top: 64px;
+    bottom: 0;
+    width: 260px;
+    background: #f7f7f7;
+    z-index: 1000;
+}
+
 /* right part */
 .xjProperty {
     position: fixed;
