@@ -5,7 +5,9 @@
   "repository": "",
   "main": "js/app.js",
   "dependencies": {
+    "browserify": "^12.0.1",
     "classnames": "^2.2.1",
+    "envify": "^3.4.0",
     "flux": "^2.1.1",
     "history": "^1.17.0",
     "http-server": "^0.9.0",
@@ -13,18 +15,16 @@
     "lodash": "^3.10.1",
     "object-assign": "^4.0.1",
     "react": "^0.14.3",
+    "reactify": "^1.1.1",
     "react-bootstrap": "^0.28.2",
     "react-dom": "^0.14.3",
     "react-hammerjs": "^0.4.3",
     "react-quill": "^0.3.0",
-    "react-router": "^1.0.3"
+    "react-router": "^1.0.3",
+    "uglify-js": "^2.6.1"
   },
   "devDependencies": {
-    "browserify": "^12.0.1",
-    "envify": "^3.4.0",
     "jest-cli": "^0.8.0",
-    "reactify": "^1.1.1",
-    "uglify-js": "^2.6.1",
     "watchify": "^3.6.1"
   },
   "scripts": {
