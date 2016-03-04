@@ -8,6 +8,7 @@
     "classnames": "^2.2.1",
     "flux": "^2.1.1",
     "history": "^1.17.0",
+    "http-server": "^0.9.0",
     "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
     "object-assign": "^4.0.1",
@@ -27,8 +28,10 @@
     "watchify": "^3.6.1"
   },
   "scripts": {
-    "start": "watchify -o js/bundle.js -v -d js/app.js",
+    "dev": "watchify -o js/bundle.js -v -d js/app.js",
     "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js",
+    "postinstall": "npm run build",
+    "start": "http-server .",
     "test": "jest"
   },
   "author": "Dong Wang",

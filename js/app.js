@@ -37,8 +37,8 @@ var Index = React.createClass({
                 <h1 style={style}>心界编辑器</h1>
                 <div>
                     <ul>
-                        <li><Link to="/scene/haha">跳转</Link></li>
                         <li><Link to="/scene/test" query={{ pageID: 1 }}>跳转到第一页</Link></li>
+                        <li><Link to="/scene/test" query={{ pageID: 2 }}>跳转到第二页</Link></li>
                     </ul>
                 </div>
             </div>
